@@ -18,7 +18,12 @@ int main( int argc, char* argv[] )
 		}
 	}
 
-	system( "git clone --depth=1 " REPO " template-cmake" );
+	const int result = system( "git clone --depth=1 " REPO " template-cmake" );
+
+	if ( result != 0 ) {
+		std::cout << "Failed to clone repo\n";
+		return result;
+	}
 
 	std::filesystem::remove_all( "template-cmake/.git" );
 	const std::filesystem::directory_iterator it( "./template-cmake" );
