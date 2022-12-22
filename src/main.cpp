@@ -23,9 +23,7 @@ int main( int argc, char* argv[] )
 		return 0;
 	}
 
-	const int result = system( "git clone --depth=1 " REPO " template-cmake" );
-
-	if ( result != 0 )
+	if ( const int result = system( "git clone --depth=1 " REPO " template-cmake" ); result != 0 )
 	{
 		std::cout << "Failed to clone repo\n";
 		return result;
@@ -70,4 +68,10 @@ int main( int argc, char* argv[] )
 	}
 
 	std::filesystem::remove_all( "template-cmake/" );
+
+	if ( const int result = system( "git init" ); result != 0 )
+	{
+		std::cout << "Failed to init git repo\n";
+		return result;
+	}
 }
