@@ -45,7 +45,7 @@ int main( int argc, char* argv[] )
 			const std::filesystem::path dest = path.lexically_relative( "./template-cmake/" );
 			std::filesystem::create_directories( dest );
 		}
-		else if ( path.filename() != ".gitignore" )
+		else
 			files.emplace_back( path );
 	}
 
@@ -62,7 +62,7 @@ int main( int argc, char* argv[] )
 				should_move = false;
 			}
 			else
-				std::cout << "Overwriting " << path.generic_string() << '\n';
+				std::cout << "Overwriting " << dest.generic_string() << '\n';
 		}
 
 		if ( should_move )
